@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 @Profile("postgressql")
 public class SprintControllerPSqlTest {
 
-    @Mock()
+    @Mock
     private SprintRepository sprintRepository;
     @Mock
     private ProjectRepository projectRepository;
@@ -40,8 +40,6 @@ public class SprintControllerPSqlTest {
     public void setup() {
         projectId = 1L;
         statusCode = "active";
-        sprintRepository = mock(SprintRepository.class);
-        projectRepository = mock(ProjectRepository.class);
         handler = new Handlers.SprintHandler(sprintRepository, sprintMapper);
         sprintController = new SprintController(projectRepository, handler);
 

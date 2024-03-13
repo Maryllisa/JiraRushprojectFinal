@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 @Profile("H2")
 class SprintControllerH2Test {
 
-    @Mock()
+    @Mock
     private SprintRepository sprintRepository;
     @Mock
     private ProjectRepository projectRepository;
@@ -39,10 +39,9 @@ class SprintControllerH2Test {
 
     @BeforeEach
     public void setup() {
+
         projectId = 1L;
         statusCode = "active";
-        sprintRepository = mock(SprintRepository.class);
-        projectRepository = mock(ProjectRepository.class);
         handler = new Handlers.SprintHandler(sprintRepository, sprintMapper);
         sprintController = new SprintController(projectRepository, handler);
 
