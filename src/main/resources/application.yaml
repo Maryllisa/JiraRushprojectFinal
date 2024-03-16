@@ -14,7 +14,7 @@ spring:
     show-sql: true
     open-in-view: false
   profiles:
-    active: h2
+    active: postgresql
   config:
     import: classpath:config.properties
       # validate db by model

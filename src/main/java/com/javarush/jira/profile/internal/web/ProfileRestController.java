@@ -14,7 +14,7 @@ public class ProfileRestController extends AbstractProfileController {
     public static final String REST_URL = "/api/profile";
 
     @GetMapping
-    public ProfileTo get(@AuthenticationPrincipal AuthUser authUser) {
+    public ProfileTo gets(@AuthenticationPrincipal AuthUser authUser) {
         return super.get(authUser.id());
     }
 
