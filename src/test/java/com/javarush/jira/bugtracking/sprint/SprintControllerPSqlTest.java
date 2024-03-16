@@ -19,7 +19,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@Profile("postgressql")
+@Profile("postgresql")
 public class SprintControllerPSqlTest {
 
     @Mock
