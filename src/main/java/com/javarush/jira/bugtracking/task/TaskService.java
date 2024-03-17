@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import static com.javarush.jira.bugtracking.ObjectType.TASK;
@@ -85,7 +86,6 @@ public class TaskService {
             activityHandler.create(makeActivity(id, taskTo));
         }
     }
-
     public TaskToFull get(long id) {
         Task task = Util.checkExist(id, handler.getRepository().findFullById(id));
         TaskToFull taskToFull = fullMapper.toTo(task);
@@ -93,6 +93,12 @@ public class TaskService {
         fillExtraFields(taskToFull, activities);
         taskToFull.setActivityTos(activityHandler.getMapper().toToList(activities));
         return taskToFull;
+    }
+    public boolean addTaskTag(long id, String newTag){
+        Task task = Util.checkExist(id, handler.getRepository().findFullById(id));
+        task.setTags(Collections.singleton(newTag));
+        handler.update(task,id);
+        return true;
     }
 
     public TaskToExt getNewWithSprint(long sprintId) {

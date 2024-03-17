@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -45,6 +46,12 @@ public class TaskController {
     public TaskToFull get(@PathVariable long id) {
         log.info("get task by id={}", id);
         return taskService.get(id);
+    }
+    @PostMapping("/addNewTag/{id}")
+    public boolean addNew(@PathVariable long id,
+                          @RequestParam String newTag,
+                          Model model){
+        return taskService.addTaskTag(id, newTag);
     }
 
     @GetMapping("/by-sprint")
@@ -157,3 +164,4 @@ public class TaskController {
         }
     }
 }
+
