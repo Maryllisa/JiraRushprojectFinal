@@ -329,3 +329,11 @@ values ('todo', 'ToDo', 3, 'in_progress,canceled|'),
 
 drop index UK_USER_BELONG;
 create unique index UK_USER_BELONG on USER_BELONG (OBJECT_ID, OBJECT_TYPE, USER_ID, USER_TYPE_CODE) where ENDPOINT is null;
+
+--changeset parmon:addNewACTIVITY
+
+INSERT INTO ACTIVITY (ID, AUTHOR_ID, TASK_ID, UPDATED, STATUS_CODE)
+VALUES
+    (5, 1, 1, '2023-05-15 09:05:10', 'in_progress'),
+    (6, 2, 2, '2023-05-15 12:25:10', 'ready_for_review'),
+    (7, 3, 3, '2023-05-15 14:05:10', 'done');

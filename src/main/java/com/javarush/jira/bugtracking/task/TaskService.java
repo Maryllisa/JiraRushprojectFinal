@@ -19,8 +19,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static com.javarush.jira.bugtracking.ObjectType.TASK;
@@ -145,5 +147,11 @@ public class TaskService {
         if (!userType.equals(possibleUserType)) {
             throw new DataConflictException(String.format(assign ? CANNOT_ASSIGN : CANNOT_UN_ASSIGN, userType, task.getStatusCode()));
         }
+    }
+    private Duration InProgressToReadyForReview(Task task){
+        return Duration.between(LocalDateTime.now(), task.getStartpoint());
+    }
+    private Duration readyForReviewToDone(Task task){
+        return Duration.between(LocalDateTime.now(), task.getEndpoint());
     }
 }
